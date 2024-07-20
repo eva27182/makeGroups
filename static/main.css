@@ -1,0 +1,57 @@
+header H1{
+    width: 100%;
+    text-align: center;
+}
+
+form{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inputArea {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.row{
+    margin-top: 5px;
+    display: flex;
+}
+
+.row>p {
+    margin: 0;
+    margin-right: 10px;
+}
+
+.resultRow{
+    width: 90%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.resultRow > .groupRow{
+    display: flex;
+    justify-content: center;
+}
+.groupRow > p{
+    padding-left: 10px;
+    margin: 0;
+}
+
+#buttons{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+}
+#buttons button{
+    width: 30%;
+}
+
+#alert{
+    color: red;
+}

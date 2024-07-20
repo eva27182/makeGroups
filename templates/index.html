@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>グループ作成</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+
+
+<body>
+    <header>
+        <h1>バドミントングループ分け</h1>
+    </header>
+    <div id="inputMembers">
+        <form>
+            <div id="inputArea">
+                <div class="row">
+                    <p>使用可能なコートの数を半角数字で入力してください</p>
+                    <input name="groups_per_week" type="number">
+                </div>
+                <div class="row">
+                    <p>何周分作成しますか</p>
+                    <input name="weeks" type="number">
+                </div>
+                <div>
+                    <p>参加者の名前を重複しないように入力してください</p>
+                </div>
+                <div id="inputPlayerArea">
+                    <div class="row">
+                        <p>Player 1</p>
+                        <input name="player1" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 2</p>
+                        <input name="player2" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 3</p>
+                        <input name="player3" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 4</p>
+                        <input name="player4" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 5</p>
+                        <input name="player5" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 6</p>
+                        <input name="player6" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 7</p>
+                        <input name="player7" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 8</p>
+                        <input name="player8" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 9</p>
+                        <input name="player9" type="text">
+                    </div>
+                    <div class="row">
+                        <p>Player 10</p>
+                        <input name="player10" type="text">
+                    </div>
+                </div>
+                <div id="alertDiv">
+                    <p id="alert"></p>
+                </div>
+            </div>
+            <div id="buttons">
+                <button type="button" onclick="addPlayer(this)">メンバーを追加</button>
+                <button type="button" onclick="get_member_array()">グループ作成</button>
+                <button type="button" onclick="resetResult()">リセットリザルト</button>
+            </div>
+        </form>
+    </div>
+    <div id="result"></div>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+
+</html>
