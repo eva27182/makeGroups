@@ -30,6 +30,13 @@ function addPlayer() {
     newPlayer.setAttribute("name", `player${num + 1}`);
     newPlayer.setAttribute("type", "text");
     newRow.appendChild(newPlayer);
+    //削除ボタン作成
+    let deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("type", "button");
+    deleteBtn.setAttribute("onclick", "deletePlayer(this)");
+    deleteBtn.textContent = "削除";
+    newRow.appendChild(deleteBtn);
+
     divArea.appendChild(newRow);
 }
 
