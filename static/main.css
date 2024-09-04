@@ -1,124 +1,85 @@
-html{
-    font-size:xx-large;
+html {
+    font-size: xx-large;
 }
-header H1{
+
+header H1 {
     width: 100%;
     text-align: center;
 }
-@media (max-width: 1000px) {
-    form{
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    #inputArea {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    #inputPlayerArea{
-        width: 100%;
-    }
-    div.row{
-        width: 100%;
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-evenly;
-    }
 
-    input{
-        font-size: large;
-    }
-    
-    .row>p {
-        margin: 0;
-        margin-right: 10px;
-    }
-    
-    .resultRow{
-        width: 100%;
-        margin-top: 50px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .resultRow > .groupRow{
-        display: flex;
-        justify-content: center;
-    }
-    .groupRow > p{
-        padding-left: 10px;
-        margin: 0;
-    }
-    
-    #buttons{
-        margin-top: 30px;
-        display: flex;
-        justify-content: space-evenly;
-    }
-    #buttons button{
-        width: 30%;
-    }
-    
-    #alert{
-        color: red;
-    }
+body {
+    margin-bottom: 30px;
 }
 
-@media (min-width: 1200px) {
-    form{
-        width: 60%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    #inputArea {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    div.row{
-        margin-top: 5px;
-        display: flex;
-    }
-    
-    .row>p {
-        margin: 0;
-        margin-right: 10px;
-    }
-    
-    .resultRow{
-        width: 90%;
-        margin-top: 50px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .resultRow > .groupRow{
-        display: flex;
-        justify-content: center;
-    }
-    .groupRow > p{
-        padding-left: 10px;
-        margin: 0;
-    }
-    
-    #buttons{
-        margin-top: 30px;
-        display: flex;
-        justify-content: space-evenly;
-    }
-    #buttons button{
-        width: 30%;
-    }
-    
-    #alert{
-        color: red;
-    }
+
+form {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inputArea {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inputPlayerArea {
+    width: 100%;
+}
+
+div.row {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+input {
+    font-size: large;
+}
+
+.row>p {
+    margin: 0;
+    margin-right: 10px;
+}
+
+#result{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resultRow {
+    width: 100%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resultRow>.groupRow {
+    display: flex;
+    justify-content: center;
+}
+
+.groupRow>p {
+    padding-left: 10px;
+    margin: 0;
+}
+
+#buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#buttons button {
+    width: 30%;
+}
+
+#alert {
+    color: red;
 }

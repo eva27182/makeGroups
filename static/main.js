@@ -1,5 +1,18 @@
+function arrayShuffle(array) {
+    for(let i = (array.length - 1); 0 < i; i--){
+  
+      // 0〜(i+1)の範囲で値を取得
+      let r = Math.floor(Math.random() * (i + 1));
+  
+      // 要素の並び替えを実行
+      let tmp = array[i];
+      array[i] = array[r];
+      array[r] = tmp;
+    }
+    return array;
+  }
 
-function addPlayer(btn) {
+function addPlayer() {
     let divArea = document.querySelector("#inputPlayerArea");
     console.log(divArea);
     //新規inputタグのname属性のナンバリング用の数字取得
@@ -18,6 +31,13 @@ function addPlayer(btn) {
     newPlayer.setAttribute("type", "text");
     newRow.appendChild(newPlayer);
     divArea.appendChild(newRow);
+}
+
+//delete->数字振り直し
+function deletePlayer(btn){
+    let parent = btn.parentNode;
+    parent.remove();
+    saveFormState();
 }
 
 function get_member_array() {
@@ -55,6 +75,7 @@ function get_member_array() {
     else {
         alertMessage.textContent = "";
         values["members"] = values["members"].filter(value => value != "")
+        values["members"] = arrayShuffle(values["members"])
         console.log(values)
         fetch('/post', {
             method: 'POST',
@@ -89,11 +110,11 @@ function showGroups(data) {
         for (let j = 0; j < data[i][0].length; j++) {
             let groupRow = document.createElement("div");
             groupRow.setAttribute("class", "groupRow");
-            groupRow.textContent = `グループ${j + 1}`;
+            groupRow.textContent = `コート${j + 1}`;
             let p = document.createElement("p");
             p.textContent = data[i][0][j].join(", ")
             groupRow.appendChild(p);
-            console.log(`グループ${j + 1}`);
+            console.log(`コート${j + 1}`);
             console.log(data[i][0][j]);
             resultRow.appendChild(groupRow);
         }
@@ -127,11 +148,21 @@ function saveFormState() {
     });
     localStorage.setItem('formData', JSON.stringify(formData));
 }
+
 function loadFormState() {
     let formData = localStorage.getItem('formData');
     if (formData) {
         formData = JSON.parse(formData);
         let inputTags = document.querySelectorAll("#inputArea input");
+        console.log("formData:",formData);
+        let keys = Object.keys(formData)
+        console.log("formData.length:", keys.length);
+        //ボタンから追加した分のinputタグを追加
+        for(let i = 0; i < (keys.length - inputTags.length); i++){
+            addPlayer();
+        }
+        //inputTagsの更新
+        inputTags = document.querySelectorAll("#inputArea input");
         inputTags.forEach((input, index) => {
             if (formData[`input${index}`]) {
                 input.value = formData[`input${index}`];
