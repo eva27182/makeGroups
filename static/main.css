@@ -29,6 +29,18 @@ form {
 
 #inputPlayerArea {
     width: 100%;
+    
+}
+#inputPlayerArea .row>p{
+    width: 20%;
+    white-space: nowrap;
+}
+#inputPlayerArea .row>input{
+    width: 50%;
+    white-space: nowrap;
+}
+#inputPlayerArea .row>button{
+    width: 20%;
 }
 
 div.row {
@@ -48,6 +60,7 @@ input {
 }
 
 #result{
+    margin-top: 20px;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -72,14 +85,42 @@ input {
 
 #buttons {
     margin-top: 30px;
+    
     display: flex;
     justify-content: space-evenly;
 }
 
 #buttons button {
+    height: 50px;
+    font-size: 30px;
     width: 30%;
 }
 
 #alert {
     color: red;
 }
+
+.kyukei{
+    margin: 0;
+}
+#result>table {
+    font-size: large;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#result>table, th, td {
+    border: 1px solid black;
+    margin-top: 10px;
+  }
+
+  /* 奇数行目の色 */
+  #result tr:nth-child(odd) {
+    background-color: #f2f2f2; /* グレー */
+  }
+
+  /* 偶数行目の色 */
+  #result tr:nth-child(even) {
+    background-color: #ffffff; /* 白 */
+  }

@@ -1,16 +1,16 @@
 function arrayShuffle(array) {
-    for(let i = (array.length - 1); 0 < i; i--){
-  
-      // 0〜(i+1)の範囲で値を取得
-      let r = Math.floor(Math.random() * (i + 1));
-  
-      // 要素の並び替えを実行
-      let tmp = array[i];
-      array[i] = array[r];
-      array[r] = tmp;
+    for (let i = (array.length - 1); 0 < i; i--) {
+
+        // 0〜(i+1)の範囲で値を取得
+        let r = Math.floor(Math.random() * (i + 1));
+
+        // 要素の並び替えを実行
+        let tmp = array[i];
+        array[i] = array[r];
+        array[r] = tmp;
     }
     return array;
-  }
+}
 
 function addPlayer() {
     let divArea = document.querySelector("#inputPlayerArea");
@@ -41,9 +41,15 @@ function addPlayer() {
 }
 
 //delete->数字振り直し
-function deletePlayer(btn){
+function deletePlayer(btn) {
     let parent = btn.parentNode;
     parent.remove();
+    //player番号振り直し
+    let players = document.querySelectorAll("#inputPlayerArea>div>p");
+    console.log(players);
+    for(let i = 0; i < players.length; i++){
+        players[i].textContent = `Player ${i+1}`
+    }
     saveFormState();
 }
 
@@ -55,9 +61,6 @@ function get_member_array() {
         let name = elem.getAttribute("name");
         if (name == "groups_per_week") {
             values["groups_per_week"] = Number(elem.value);
-        }
-        else if (name == "weeks") {
-            values["weeks"] = Number(elem.value);
         }
         else {
             values["members"].push(elem.value);
@@ -71,12 +74,12 @@ function get_member_array() {
     let alertMessage = document.querySelector("#alert");
     if (values["groups_per_week"] * 4 > values["members"].length) {
         //alert("コートの数に対して参加者が少なすぎます！！！");
-        
+
         alertMessage.textContent = "コート数 * 4 <= 参加者数　となるように追加してください！"
     }
     //名前の重複がある場合
-    else if(values["members"].length > tmp.length){
-        
+    else if (values["members"].length > tmp.length) {
+
         alertMessage.textContent = "名前に重複しているものがあります！！"
     }
     else {
@@ -103,9 +106,65 @@ function get_member_array() {
     }
 }
 
+//dataは[l][m][n][o]の4次元配列
+//m*nのテーブルをl個作成
+//data[グループ数][0 or 1(プレイヤー or 休憩)][コート数][メンバー0~4]
+function create_show_table(data) {
+    let tableNum = data.length;
+    const container = document.querySelector("#result");
+    function new_table(data, n, m) {
+        console.log("テーブル作成");
+        let table = document.createElement('table');
+        let thead = document.createElement("thead");
+        let tbody = document.createElement('tbody');
+        // Create header row
+        const headerRow = document.createElement('tr');
+        let courtHeader = document.createElement("td");
+        courtHeader.textContent = `コート番号`;
+        headerRow.appendChild(courtHeader);
+        for (let j = 1; j < m + 1; j++) {
+            const th = document.createElement('th');
+            th.textContent = `メンバー ${j}`;
+            headerRow.appendChild(th);
+        }
+        thead.appendChild(headerRow);
+        // プレイヤー追加
+        for (let i = 1; i < n + 1; i++) {
+            const row = document.createElement('tr');
+            let courtCell = document.createElement("td");
+            courtCell.textContent = `コート${i}`
+            row.appendChild(courtCell)
+            console.log(`${i}行目 ${data[0][i-1]}`)
+            for (let j = 1; j < m + 1; j++) {
+                const cell = document.createElement('td');
+                cell.textContent = `${data[0][i - 1][j - 1]}`;
+                row.appendChild(cell);
+            }
+            tbody.appendChild(row);
+        }
+        // Append thead and tbody to the table
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+        // Add table to the container
+        container.appendChild(table);
+
+        //休憩の人をpタグで追加
+        let kyukeiP = document.createElement("p");
+        kyukeiP.setAttribute("class", "kyukei");
+        kyukeiP.textContent = data[1].join(", ") + " さんは休憩です";
+        container.appendChild(kyukeiP);
+    }
+    for (let i = 0; i < tableNum; i++) {
+        console.log(`new_table(data,${data[i][0].length},${data[i][0][0].length})`)
+        new_table(data[i],data[i][0].length, data[i][0][0].length);
+    }
+}
+
 function showGroups(data) {
     data = data.data
     console.log("data in showGroups", data);
+    /*テキスト形式ではなくテーブルで表示することにしたから一旦コメントアウト
     let showResultArea = document.querySelector("#result");
     for (let i = 0; i < data.length; i++) {
         //グループ分けの結果を表示するためのdiv
@@ -133,11 +192,13 @@ function showGroups(data) {
 
         console.log("_____________")
     }
+    */
+    create_show_table(data);
 }
 function resetResult() {
     let result = document.querySelector("#result");
     console.log(result);
-    let children = result.querySelectorAll("div");
+    let children = result.querySelectorAll("*");
     console.log(children)
     children.forEach(elem => {
         elem.remove();
@@ -161,11 +222,11 @@ function loadFormState() {
     if (formData) {
         formData = JSON.parse(formData);
         let inputTags = document.querySelectorAll("#inputArea input");
-        console.log("formData:",formData);
+        console.log("formData:", formData);
         let keys = Object.keys(formData)
         console.log("formData.length:", keys.length);
         //ボタンから追加した分のinputタグを追加
-        for(let i = 0; i < (keys.length - inputTags.length); i++){
+        for (let i = 0; i < (keys.length - inputTags.length); i++) {
             addPlayer();
         }
         //inputTagsの更新
