@@ -1,3 +1,7 @@
+#conda deactivate
+#. venv/bin/activate
+#flask --app shogi_app --debug run
+
 from flask import Flask, render_template, request, jsonify
 import random
 import os
@@ -114,11 +118,9 @@ def recieve_data():
     data = request.get_json()
     print(data)
     members = data["members"]
-    weeks = data["weeks"]
     groups_per_week = data["groups_per_week"]
-    print(weeks, groups_per_week)
     print("members:::", members)
-    return jsonify({"status": "success", "data": main(members, weeks, groups_per_week)})
+    return jsonify({"status": "success", "data": main(members, len(members), groups_per_week)})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
