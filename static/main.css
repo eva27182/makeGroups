@@ -19,7 +19,7 @@ form {
 }
 
 #inputArea {
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,9 +27,27 @@ form {
     margin-right: auto;
 }
 
+#inputArea .courts{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.courts>p{
+    margin: 0;
+}
+
 #inputPlayerArea {
     width: 100%;
     
+}
+div.row {
+    width: 100%;
+    height: 48px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
 }
 #inputPlayerArea .row>p{
     width: 20%;
@@ -43,12 +61,7 @@ form {
     width: 20%;
 }
 
-div.row {
-    width: 100%;
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-evenly;
-}
+
 
 input {
     font-size: large;
@@ -61,7 +74,7 @@ input {
 
 #result{
     margin-top: 20px;
-    width: 80%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -84,16 +97,20 @@ input {
 }
 
 #buttons {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 30px;
-    
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
 }
 
 #buttons button {
+    margin-top: 10px;
     height: 50px;
     font-size: 30px;
-    width: 30%;
+    width: 100%;
 }
 
 #alert {
@@ -112,7 +129,7 @@ input {
 
 #result>table, th, td {
     border: 1px solid black;
-    margin-top: 10px;
+    margin-top: 40px;
   }
 
   /* 奇数行目の色 */
