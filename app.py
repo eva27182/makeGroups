@@ -99,9 +99,9 @@ def generate_combinations(members,groups_per_week, weeks):
             week_combination.append(group)
             for member in group:
                 member_combinations[member].update(group)
-        print(week_combination)
+        #print(week_combination)
         #print()
-        all_weeks_combinations.append((week_combination, leftover_members))
+        all_weeks_combinations.append([week_combination, leftover_members])
     #print(not_leftover_members)
     return all_weeks_combinations
 
@@ -116,10 +116,10 @@ def index():
 @app.route("/post", methods=['POST'])
 def recieve_data():
     data = request.get_json()
-    print(data)
+    #print(data)
     members = data["members"]
     groups_per_week = data["groups_per_week"]
-    print("members:::", members)
+    #print("members:::", members)
     return jsonify({"status": "success", "data": main(members, len(members), groups_per_week)})
 
 if __name__ == "__main__":

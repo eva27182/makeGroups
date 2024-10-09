@@ -87,6 +87,7 @@ function get_member_array() {
         values["members"] = values["members"].filter(value => value != "")
         values["members"] = arrayShuffle(values["members"])
         console.log(values)
+        console.log("これからfetchするよ")
         fetch('/post', {
             method: 'POST',
             headers: {
@@ -96,9 +97,10 @@ function get_member_array() {
         })
             .then(response => response.json())
             .then(data => {
+                console.log('Success:', data);
                 resetResult();
                 showGroups(data);
-                console.log('Success:', data);
+                
             })
             .catch((error) => {
                 console.error('Error:', error);
