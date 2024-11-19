@@ -40,6 +40,15 @@ function addPlayer() {
     divArea.appendChild(newRow);
 }
 
+function clearPlayers(){
+    console.log("入力のクリア開始");
+    let inputArea = document.querySelectorAll("#inputPlayerArea>div>input");
+    inputArea.forEach(elem => {
+        console.log(elem.value)
+        elem.value = "";
+    })
+}
+
 //delete->数字振り直し
 function deletePlayer(btn) {
     let parent = btn.parentNode;

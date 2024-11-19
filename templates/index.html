@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <title>グループ作成</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RQG2VYS655"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RQG2VYS655');
+    </script>
 </head>
 
 
@@ -22,6 +31,7 @@
                 <div>
                     <p>参加者の名前を重複しないように入力してください</p>
                 </div>
+                <button type="button" onclick="clearPlayers()">入力をクリア</button>
                 <div id="inputPlayerArea">
                     <div class="row">
                         <p>Player 1</p>

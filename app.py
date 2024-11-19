@@ -1,6 +1,6 @@
 #conda deactivate
 #. venv/bin/activate
-#flask --app shogi_app --debug run
+#flask --app app --debug run
 
 from flask import Flask, render_template, request, jsonify
 import random
