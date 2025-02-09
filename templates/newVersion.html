@@ -21,7 +21,7 @@
             <p class="displayText">使用可能コート数</p>
             <div class="counter-box">
                 <button type="button" class="btn" onclick="decrease()">−</button>
-                <input type="text" id="counter" class="input-box" value="0" readonly>
+                <input type="text" id="counter" class="input-box" value="0" name="groups_per_week" readonly>
                 <button type="button" class="btn" onclick="increase()">+</button>
             </div>
         </div>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="layer-3">
-                <button id="register-button" disabled="true" type="button" class="deactive">登録する</button>
+                <button id="register-button" disabled="true" type="button" class="deactive" onclick="submitData()">登録する</button>
             </div>
         </div>
     </form>
