@@ -1,0 +1,331 @@
+html {
+    font-size: xx-large;
+}
+
+header {
+    background-color: rgb(123, 220, 220);
+}
+
+header H1 {
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+
+form {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inputArea {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inputPlayerArea {
+    width: 100%;
+    
+}
+#inputPlayerArea .row>p{
+    width: 20%;
+    white-space: nowrap;
+}
+#inputPlayerArea .row>input{
+    width: 50%;
+    white-space: nowrap;
+}
+#inputPlayerArea .row>button{
+    width: 20%;
+}
+
+div.row {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+input {
+    font-size: large;
+}
+
+.row>p {
+    margin: 0;
+    margin-right: 10px;
+}
+
+#result{
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resultRow {
+    width: 100%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resultRow>.groupRow {
+    display: flex;
+    justify-content: center;
+}
+
+.groupRow>p {
+    padding-left: 10px;
+    margin: 0;
+}
+
+#buttons {
+    margin-top: 30px;
+    
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#buttons button {
+    height: 50px;
+    font-size: 30px;
+    width: 30%;
+}
+
+#alert {
+    color: red;
+}
+
+.kyukei{
+    margin: 0;
+}
+#result>table {
+    font-size: large;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#result>table, th, td {
+    border: 1px solid black;
+    margin-top: 10px;
+  }
+
+  /* 奇数行目の色 */
+  #result tr:nth-child(odd) {
+    background-color: #f2f2f2; /* グレー */
+  }
+
+  /* 偶数行目の色 */
+  #result tr:nth-child(even) {
+    background-color: #ffffff; /* 白 */
+  }
+  
+  /*-----------------*/
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFF0;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.counter-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+.input-box {
+    width: 100px;
+    text-align: center;
+    font-size: 24px;
+    background-color: #ddd;
+    border: none;
+    padding: 10px;
+}
+
+p.displayText{
+    margin: 0;
+}
+
+
+
+
+
+.player_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.player-box {
+    background-color: #E0E0E0;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+.p_input-box {
+    background-color: #7DA7C9;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.player-count {
+    font-size: 20px;
+    margin: 10px 0;
+}
+.counter-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.count-display {
+    background-color: #ddd;
+    padding: 10px;
+    font-size: 24px;
+    width: 100px;
+    text-align: center;
+    border-radius: 5px;
+}
+.add-button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+#register-button.deactive {
+    background-color: #B0B0B0;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+    height: 70px;
+    width: 190px;
+    text-decoration: line-through;
+}
+#register-button.active {
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+    height: 70px;
+    width: 190px;
+    text-decoration: none;
+    background-color: #e74949;
+}
+
+.layer-1 {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+
+
+#show-behind {
+    flex: 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E3E3E3;
+    padding: 10px;
+    width: 100%;
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+}
+
+#add-next {
+    flex: 0 0 50px; /* 幅を固定 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input-name-area{
+    display: flex;
+    justify-content: center;
+}
+
+#show-added-player-num{
+    text-align: center;
+}
+
+#name-card-container{
+    overflow-x:scroll;
+    display: flex;
+    flex: 1;
+    justify-content: space-between; 
+    gap: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+#add-player {
+    width: 70px;
+    height: 70px;
+    background-image: url("img/addButton.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}
+
+html, body {
+    overscroll-behavior: none; /* スワイプで戻る動作を無効化 */
+}
+
+#show-behind-img{
+    height: 70px;
+    width: 70px;
+    background-image: url("img/showBehind.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}

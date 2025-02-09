@@ -1,6 +1,6 @@
 #conda deactivate
 #. venv/bin/activate
-#flask --app shogi_app --debug run
+#flask --app app --debug run
 
 from flask import Flask, render_template, request, jsonify
 import random
@@ -112,6 +112,10 @@ def main(members, weeks, groups_per_week):
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/newVersion")
+def newVersion():
+    return render_template("newVersion.html")
 
 @app.route("/post", methods=['POST'])
 def recieve_data():

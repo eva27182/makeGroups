@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>new version</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='newVersion.css') }}">
+</head>
+
+
+<body>
+    <header>
+        <h1>バドミントングループ分け</h1>
+    </header>
+    <div id="yohaku">
+        余白
+    </div>
+    <form>
+
+        <div class="container">
+            <p class="displayText">使用可能コート数</p>
+            <div class="counter-box">
+                <button type="button" class="btn" onclick="decrease()">−</button>
+                <input type="text" id="counter" class="input-box" value="0" readonly>
+                <button type="button" class="btn" onclick="increase()">+</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="layer-1">
+                <div id="show-behind">
+                    <button id="show-behind-img" type="button" onclick="scrollToRight()"></button>
+                </div>
+                <div id="name-card-container">
+                    <div class="name-area">
+                        <div class="show-message">名前を入力してください</div>
+                        <div class="show-player-num">player1</div>
+                        <div class="input-name-area">
+                            <input type="text" name="player1">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="add-next">
+                    <button id="add-player" onclick="addNameArea()" type="button"></button>
+                </div>
+            </div>
+
+            <div class="layer-2">
+                <div id="added-players">
+                    <div id="show-message-player">プレーヤー数</div>
+                    <div id="show-added-player-num">1</div>
+                </div>
+            </div>
+            <div class="layer-3">
+                <button id="register-button" disabled="true" type="button" class="deactive">登録する</button>
+            </div>
+        </div>
+    </form>
+    <script src="{{ url_for('static', filename='newVersion.js') }}"></script>
+</body>
+
+</html>
