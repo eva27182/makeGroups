@@ -8,6 +8,13 @@ function loadFormState() {
     let formData = localStorage.getItem('formData');
     if (formData) {
         formData = JSON.parse(formData);
+        //formData["courtNum"]を処理
+        let loadedCourtNum = formData["courtNum"];
+        let courtNum = document.querySelector("#counter");
+        courtNum.value = loadedCourtNum;
+        delete formData.courtNum;
+
+        //formData["input"]を処理　これがplayerのデータ
         let inputTags = document.querySelectorAll("#name-card-container input");
         console.log("formData:", formData);
         let keys = Object.keys(formData)
@@ -26,6 +33,17 @@ function loadFormState() {
     }
 }
 
+
+//ユーザの操作を判断
+const interactionEvents = ["click", "scroll", "mousemove", "keydown", "touchstart", "load"];
+interactionEvents.forEach(event => {
+    document.addEventListener(event, activateSubmitButton);
+    document.addEventListener(event, countUpPlayerNum);
+    document.addEventListener(event, saveFormState);
+    
+});
+
+
 //読み込んだときにデータを保存するように
 function saveFormState() {
     let inputTags = document.querySelectorAll("#name-card-container input");
@@ -33,6 +51,8 @@ function saveFormState() {
     inputTags.forEach((input, index) => {
         formData[`input${index}`] = input.value;
     });
+    let courtNum = document.querySelector("#counter").value;
+    formData["courtNum"] = courtNum;
     localStorage.setItem('formData', JSON.stringify(formData));
 }
 
@@ -40,7 +60,6 @@ function saveFormState() {
 function increase() {
     let counter = document.getElementById('counter');
     counter.value = parseInt(counter.value) + 1;
-    activateSubmitButton();
 }
 
 function decrease() {
@@ -48,7 +67,17 @@ function decrease() {
     if (parseInt(counter.value) > 0) {
         counter.value = parseInt(counter.value) - 1;
     }
-    activateSubmitButton();
+}
+
+
+function countUpPlayerNum() {
+    let nameAreaNum = document.querySelectorAll(".name-area").length;
+    function countupTextContent(id) {
+        let counter = document.querySelector("#show-added-player-num");
+        counter.textContent = nameAreaNum.toString();
+    }
+    countupTextContent("#show-added-player-num");
+    countupTextContent("#show-player-num");
 }
 
 //.name-areaを追加するボタン
@@ -58,6 +87,11 @@ function addNameArea() {
         let nameArea = document.createElement("div");
         nameArea.setAttribute("class", "name-area");
 
+        let deleteButton = document.createElement("button");
+        deleteButton.setAttribute("class", "delete-button");
+        deleteButton.setAttribute("onclick", "deletePlayer(this)");
+        deleteButton.setAttribute("type", "button");
+
         let showMessage = document.createElement("div");
         showMessage.setAttribute("class", "show-message");
         showMessage.textContent = "名前を入力してください";
@@ -65,7 +99,7 @@ function addNameArea() {
 
         let showPlayerNum = document.createElement("div");
         showPlayerNum.setAttribute("class", "show-player-num");
-        showPlayerNum.textContent = `player${nameAreaNum + 1}`;
+        showPlayerNum.textContent = `player ${nameAreaNum + 1}`;
 
         let inputNameArea = document.createElement("div");
         inputNameArea.setAttribute("class", "input-name-area");
@@ -74,6 +108,7 @@ function addNameArea() {
         inputTag.setAttribute("name", `player${nameAreaNum + 1}`)
         inputNameArea.appendChild(inputTag);
 
+        nameArea.appendChild(deleteButton);
         nameArea.appendChild(showMessage);
         nameArea.appendChild(showPlayerNum);
         nameArea.appendChild(inputNameArea);
@@ -81,17 +116,7 @@ function addNameArea() {
         let container = document.querySelector("#name-card-container");
         container.appendChild(nameArea);
     }
-    function countUpPlayerNum() {
 
-
-
-        function countupTextContent(id) {
-            let counter = document.querySelector("#show-added-player-num");
-            counter.textContent = (nameAreaNum + 1).toString();
-        }
-        countupTextContent("#show-added-player-num");
-        countupTextContent("#show-player-num");
-    }
     function scrollToRight() {
         const container = document.querySelector('#name-card-container');
         const scrollAmount = container.offsetWidth * nameAreaNum;  // スクロール可能な幅
@@ -105,7 +130,6 @@ function addNameArea() {
     createNewNameArea();
     countUpPlayerNum();
     scrollToRight();
-    activateSubmitButton();
 }
 
 function activateSubmitButton() {
@@ -172,7 +196,7 @@ function submitData() {
     values["members"] = values["members"].filter(value => value != "")
     values["members"] = arrayShuffle(values["members"])
     console.log(values)
-    
+
     fetch('/post', {
         method: 'POST',
         headers: {
@@ -192,3 +216,15 @@ function submitData() {
 
 }
 
+//delete->数字振り直し
+function deletePlayer(btn) {
+    let parent = btn.parentNode;
+    parent.remove();
+    //player番号振り直し
+    let players = document.querySelectorAll("#name-card-container>div>.show-player-num");
+    console.log(players);
+    for (let i = 0; i < players.length; i++) {
+        players[i].textContent = `Player ${i + 1}`
+    }
+    saveFormState();
+}

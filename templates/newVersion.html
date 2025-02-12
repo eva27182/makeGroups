@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>new version</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='newVersion.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/newVersion.css') }}">
 </head>
 
 
@@ -33,8 +33,9 @@
                 </div>
                 <div id="name-card-container">
                     <div class="name-area">
+                        <button class="delete-button" type="button" onclick="deletePlayer(this)"></button>
                         <div class="show-message">名前を入力してください</div>
-                        <div class="show-player-num">player1</div>
+                        <div class="show-player-num">player 1</div>
                         <div class="input-name-area">
                             <input type="text" name="player1">
                         </div>
@@ -57,7 +58,7 @@
             </div>
         </div>
     </form>
-    <script src="{{ url_for('static', filename='newVersion.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/newVersion.js') }}"></script>
 </body>
 
 </html>

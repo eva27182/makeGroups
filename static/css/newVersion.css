@@ -270,10 +270,12 @@ p.displayText{
     flex-direction: column;
     align-items: center;
     background-color: #E3E3E3;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     flex: 0 0 100%;
     scroll-snap-align: center;
+    position: relative;
 }
 
 #add-next {
@@ -305,7 +307,7 @@ p.displayText{
 #add-player {
     width: 70px;
     height: 70px;
-    background-image: url("img/addButton.svg");
+    background-image: url("../img/addButton.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -321,11 +323,26 @@ html, body {
 #show-behind-img{
     height: 70px;
     width: 70px;
-    background-image: url("img/showBehind.svg");
+    background-image: url("../img/showBehind.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     border: none;
     cursor: pointer;
     background-color: #00000000;
+}
+
+.delete-button{
+    background-image: url("../img/deleteRect.svg");
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
