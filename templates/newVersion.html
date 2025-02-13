@@ -12,11 +12,7 @@
     <header>
         <h1>バドミントングループ分け</h1>
     </header>
-    <div id="yohaku">
-        余白
-    </div>
     <form>
-
         <div class="container">
             <p class="displayText">使用可能コート数</p>
             <div class="counter-box">
@@ -44,6 +40,7 @@
 
                 <div id="add-next">
                     <button id="add-player" onclick="addNameArea()" type="button"></button>
+                    <button id="scrollToLeft" type="button" hidden></button>
                 </div>
             </div>
 
@@ -54,10 +51,18 @@
                 </div>
             </div>
             <div class="layer-3">
+                <div id="errorMessage">
+                    <p id="needMorePlayer" hidden>プレーヤーを追加してください！！</p>
+                    <p id="needFillBlanc" hidden>名前が入力されていない要素があります！！</p>
+                    <p id="duplication" hidden>名前が重複しています！！</p>
+                </div>
+            </div>
+            <div class="layer-4">
                 <button id="register-button" disabled="true" type="button" class="deactive" onclick="submitData()">登録する</button>
             </div>
         </div>
     </form>
+    <div id="result"></div>
     <script src="{{ url_for('static', filename='js/newVersion.js') }}"></script>
 </body>
 

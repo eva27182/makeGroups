@@ -1,5 +1,7 @@
 // ページが読み込まれたときに状態を復元
 window.addEventListener('load', loadFormState);
+window.addEventListener('load', activateSubmitButton);
+window.addEventListener('load', renewNameCardInfo);
 
 // フォームが変更されたときに状態を保存
 document.querySelector("form").addEventListener('input', saveFormState);
@@ -35,12 +37,12 @@ function loadFormState() {
 
 
 //ユーザの操作を判断
-const interactionEvents = ["click", "scroll", "mousemove", "keydown", "touchstart", "load"];
+const interactionEvents = ["click", "scroll", "mousemove", "keydown", "touchstart"];
 interactionEvents.forEach(event => {
-    document.addEventListener(event, activateSubmitButton);
-    document.addEventListener(event, countUpPlayerNum);
     document.addEventListener(event, saveFormState);
-    
+    document.addEventListener(event, countUpPlayerNum);
+    document.addEventListener(event, activateSubmitButton);
+    document.addEventListener(event, renewNameCardInfo);
 });
 
 
@@ -132,20 +134,60 @@ function addNameArea() {
     scrollToRight();
 }
 
+const needMorePlayer = document.querySelector("#needMorePlayer");
+const needFillBlanc = document.querySelector("#needFillBlanc");
+const duplication = document.querySelector("#duplication");
 function activateSubmitButton() {
     let courtNum = document.querySelector("#counter");
     courtNum = Number(courtNum.value);
     let playerNum = document.querySelectorAll(".name-area").length;
+    let btn = document.querySelector("#register-button");
+    let name = document.querySelectorAll(".input-name-area>input");
+    let playerFlag = 0;
+    let chohuku = new Set();
+    let chohukuFlag = 0;
+    let checkFlag = 0
+    name.forEach(elem => {
+        if (elem.value == "") {
+            playerFlag += 1;
+        }
+        // 重複チェック
+        if (chohuku.has(elem.value)) {
+            chohukuFlag += 1;
+        } else {
+            chohuku.add(elem.value);
+        }
+    });
     //コート数 * 4 <= 参加者数
-    if (courtNum > 0 && courtNum * 4 <= playerNum) {
-        let btn = document.querySelector("#register-button");
-        btn.removeAttribute("disabled");
-        btn.setAttribute("class", "active");
-    }
-    else {
-        let btn = document.querySelector("#register-button");
+    if (courtNum <= 0 || courtNum * 4 > playerNum) {
         btn.setAttribute("disabled", "true");
         btn.setAttribute("class", "deactive");
+        needMorePlayer.hidden = false;
+        checkFlag += 1;
+        console.log("人数");
+    }
+    //player名が未入力の場合
+    if (playerFlag > 0) {
+        btn.setAttribute("disabled", "true");
+        btn.setAttribute("class", "deactive");
+        needFillBlanc.hidden = false;
+        checkFlag += 1;
+        console.log("未入力");
+    }
+    //重複が含まれる場合
+    if (chohukuFlag > 0) {
+        btn.setAttribute("disabled", "true");
+        btn.setAttribute("class", "deactive");
+        duplication.hidden = false;
+        checkFlag += 1;
+        console.log("重複");
+    }
+    if(checkFlag == 0) {
+        btn.removeAttribute("disabled");
+        btn.setAttribute("class", "active");
+        needMorePlayer.hidden = true;
+        needFillBlanc.hidden = true;
+        duplication.hidden = true;
     }
 }
 
@@ -222,9 +264,127 @@ function deletePlayer(btn) {
     parent.remove();
     //player番号振り直し
     let players = document.querySelectorAll("#name-card-container>div>.show-player-num");
-    console.log(players);
     for (let i = 0; i < players.length; i++) {
         players[i].textContent = `Player ${i + 1}`
     }
     saveFormState();
+}
+
+//表示されている#name-card-containerを取得
+// →追加ボタンか左ボタンか入れ替え
+let container = document.getElementById("name-card-container");
+let nameCard = ""
+const addButton = document.querySelector("#add-player");
+const scrollToLeftButton = document.querySelector("#scrollToLeft");
+let width = ""
+container.addEventListener("scroll", () => {
+    if (container.scrollLeft > 0) {
+        if (width * (nameCard.length - 1) < container.scrollLeft) {
+            addButton.hidden = false;
+            scrollToLeftButton.hidden = true;
+        }
+        else {
+            addButton.hidden = true
+            scrollToLeftButton.hidden = false;
+        }
+    }
+});
+function renewNameCardInfo() {
+    nameCard = document.querySelectorAll(".name-area");
+    width = nameCard[0].offsetWidth;
+}
+
+function create_show_table(data) {
+    let tableNum = data.length;
+    const container = document.querySelector("#result");
+    function new_table(data, n, m) {
+        console.log("テーブル作成");
+        let table = document.createElement('table');
+        let thead = document.createElement("thead");
+        let tbody = document.createElement('tbody');
+        // Create header row
+        const headerRow = document.createElement('tr');
+        let courtHeader = document.createElement("td");
+        courtHeader.textContent = `コート番号`;
+        headerRow.appendChild(courtHeader);
+        for (let j = 1; j < m + 1; j++) {
+            const th = document.createElement('th');
+            th.textContent = `メンバー ${j}`;
+            headerRow.appendChild(th);
+        }
+        thead.appendChild(headerRow);
+        // プレイヤー追加
+        for (let i = 1; i < n + 1; i++) {
+            const row = document.createElement('tr');
+            let courtCell = document.createElement("td");
+            courtCell.textContent = `コート${i}`
+            row.appendChild(courtCell)
+            console.log(`${i}行目 ${data[0][i-1]}`)
+            for (let j = 1; j < m + 1; j++) {
+                const cell = document.createElement('td');
+                cell.textContent = `${data[0][i - 1][j - 1]}`;
+                row.appendChild(cell);
+            }
+            tbody.appendChild(row);
+        }
+        // Append thead and tbody to the table
+        table.appendChild(thead);
+        table.appendChild(tbody);
+
+        // Add table to the container
+        container.appendChild(table);
+
+        //休憩の人をpタグで追加
+        let kyukeiP = document.createElement("p");
+        kyukeiP.setAttribute("class", "kyukei");
+        kyukeiP.textContent = data[1].join(", ") + " さんは休憩です";
+        container.appendChild(kyukeiP);
+    }
+    for (let i = 0; i < tableNum; i++) {
+        console.log(`new_table(data,${data[i][0].length},${data[i][0][0].length})`)
+        new_table(data[i],data[i][0].length, data[i][0][0].length);
+    }
+}
+function showGroups(data) {
+    data = data.data
+    console.log("data in showGroups", data);
+    /*テキスト形式ではなくテーブルで表示することにしたから一旦コメントアウト
+    let showResultArea = document.querySelector("#result");
+    for (let i = 0; i < data.length; i++) {
+        //グループ分けの結果を表示するためのdiv
+        //周別div>グループ別div&休む人
+        let resultRow = document.createElement("div");
+        resultRow.setAttribute("class", "resultRow");
+        resultRow.textContent = `${i + 1}周目`;
+        console.log(`${i + 1}周目`);
+        for (let j = 0; j < data[i][0].length; j++) {
+            let groupRow = document.createElement("div");
+            groupRow.setAttribute("class", "groupRow");
+            groupRow.textContent = `コート${j + 1}`;
+            let p = document.createElement("p");
+            p.textContent = data[i][0][j].join(", ")
+            groupRow.appendChild(p);
+            console.log(`コート${j + 1}`);
+            console.log(data[i][0][j]);
+            resultRow.appendChild(groupRow);
+        }
+        console.log(`休む人： ${data[i][1]}`);
+        let kyukei = document.createElement("div");
+        kyukei.textContent = `${data[i][1]} さんは休憩です`;
+        resultRow.appendChild(kyukei);
+        showResultArea.appendChild(resultRow);
+
+        console.log("_____________")
+    }
+    */
+    create_show_table(data);
+}
+function resetResult() {
+    let result = document.querySelector("#result");
+    console.log(result);
+    let children = result.querySelectorAll("*");
+    console.log(children)
+    children.forEach(elem => {
+        elem.remove();
+    })
 }
