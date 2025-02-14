@@ -248,12 +248,13 @@ function submitData() {
     })
         .then(response => response.json())
         .then(data => {
+            console.log('Success:', data);
             resetResult();
             showGroups(data);
             console.log('Success:', data);
         })
         .catch((error) => {
-            console.error('Error:', error);
+            console.log('Error:', error);
         });
 
 }
@@ -348,35 +349,6 @@ function create_show_table(data) {
 function showGroups(data) {
     data = data.data
     console.log("data in showGroups", data);
-    /*テキスト形式ではなくテーブルで表示することにしたから一旦コメントアウト
-    let showResultArea = document.querySelector("#result");
-    for (let i = 0; i < data.length; i++) {
-        //グループ分けの結果を表示するためのdiv
-        //周別div>グループ別div&休む人
-        let resultRow = document.createElement("div");
-        resultRow.setAttribute("class", "resultRow");
-        resultRow.textContent = `${i + 1}周目`;
-        console.log(`${i + 1}周目`);
-        for (let j = 0; j < data[i][0].length; j++) {
-            let groupRow = document.createElement("div");
-            groupRow.setAttribute("class", "groupRow");
-            groupRow.textContent = `コート${j + 1}`;
-            let p = document.createElement("p");
-            p.textContent = data[i][0][j].join(", ")
-            groupRow.appendChild(p);
-            console.log(`コート${j + 1}`);
-            console.log(data[i][0][j]);
-            resultRow.appendChild(groupRow);
-        }
-        console.log(`休む人： ${data[i][1]}`);
-        let kyukei = document.createElement("div");
-        kyukei.textContent = `${data[i][1]} さんは休憩です`;
-        resultRow.appendChild(kyukei);
-        showResultArea.appendChild(resultRow);
-
-        console.log("_____________")
-    }
-    */
     create_show_table(data);
 }
 function resetResult() {

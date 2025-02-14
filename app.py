@@ -5,6 +5,7 @@
 from flask import Flask, render_template, request, jsonify
 import random
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -109,6 +110,12 @@ def main(members, weeks, groups_per_week):
     all_weeks_combinations = generate_combinations(members,groups_per_week, weeks)
     return all_weeks_combinations
 
+def outputLog(text):
+    time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open("log.txt", "a") as f:
+        f.write(str(time) + "," + str(text) + "\n") 
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -120,10 +127,10 @@ def newVersion():
 @app.route("/post", methods=['POST'])
 def recieve_data():
     data = request.get_json()
-    print(data)
     members = data["members"]
     groups_per_week = data["groups_per_week"]
-    print("members:::", members)
+    outputLog(main(members, len(members), groups_per_week))
+    
     return jsonify({"status": "success", "data": main(members, len(members), groups_per_week)})
 
 if __name__ == "__main__":
