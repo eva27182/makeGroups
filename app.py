@@ -100,7 +100,6 @@ def generate_combinations(members,groups_per_week, weeks):
             week_combination.append(group)
             for member in group:
                 member_combinations[member].update(group)
-        print(week_combination)
         #print()
         all_weeks_combinations.append((week_combination, leftover_members))
     #print(not_leftover_members)
@@ -130,8 +129,16 @@ def recieve_data():
     members = data["members"]
     groups_per_week = data["groups_per_week"]
     outputLog(main(members, len(members), groups_per_week))
-    
     return jsonify({"status": "success", "data": main(members, len(members), groups_per_week)})
+
+@app.route("/newVersion-post", methods=['POST'])
+def recieve_data_new():
+    data = request.get_json()
+    members = data["members"]
+    groups_per_week = data["groups_per_week"]
+    outputLog(main(members, len(members), groups_per_week))
+    return jsonify({"status": "success", "data": main(members, len(members), groups_per_week)})
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
