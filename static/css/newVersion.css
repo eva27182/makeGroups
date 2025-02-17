@@ -70,6 +70,10 @@ input {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .resultRow {
@@ -155,6 +159,7 @@ input {
     color: white;
     font-size: 24px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 .input-box {
     width: 100px;
@@ -362,4 +367,21 @@ html, body {
     position: absolute;
     top: 0px;
     right: 0px;
+}
+
+#downloadAsPng{
+    background-image: url("../img/downloadAsPng.svg");
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}
+
+#outputAsPng{
+    display: flex;
+    justify-content: center;
 }

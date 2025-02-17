@@ -13,7 +13,13 @@ function loadFormState() {
         //formData["courtNum"]を処理
         let loadedCourtNum = formData["courtNum"];
         let courtNum = document.querySelector("#counter");
-        courtNum.value = loadedCourtNum;
+        if (isNaN(loadedCourtNum)) {
+            courtNum.value = 0;
+        }
+        else {
+            courtNum.value = loadedCourtNum;
+        }
+        console.log("courtNum", courtNum.value)
         delete formData.courtNum;
 
         //formData["input"]を処理　これがplayerのデータ
@@ -182,7 +188,7 @@ function activateSubmitButton() {
         checkFlag += 1;
         console.log("重複");
     }
-    if(checkFlag == 0) {
+    if (checkFlag == 0) {
         btn.removeAttribute("disabled");
         btn.setAttribute("class", "active");
         needMorePlayer.hidden = true;
@@ -239,7 +245,7 @@ function submitData() {
     values["members"] = arrayShuffle(values["members"])
     console.log(values)
 
-    fetch('/post', {
+    fetch('/newVersion-post', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -320,7 +326,7 @@ function create_show_table(data) {
             let courtCell = document.createElement("td");
             courtCell.textContent = `コート${i}`
             row.appendChild(courtCell)
-            console.log(`${i}行目 ${data[0][i-1]}`)
+            console.log(`${i}行目 ${data[0][i - 1]}`)
             for (let j = 1; j < m + 1; j++) {
                 const cell = document.createElement('td');
                 cell.textContent = `${data[0][i - 1][j - 1]}`;
@@ -343,8 +349,11 @@ function create_show_table(data) {
     }
     for (let i = 0; i < tableNum; i++) {
         console.log(`new_table(data,${data[i][0].length},${data[i][0][0].length})`)
-        new_table(data[i],data[i][0].length, data[i][0][0].length);
+        new_table(data[i], data[i][0].length, data[i][0][0].length);
     }
+    //画像出力ボタンを表示
+    let btn = document.querySelector("#downloadAsPng");
+    btn.hidden = false;
 }
 function showGroups(data) {
     data = data.data
@@ -359,4 +368,17 @@ function resetResult() {
     children.forEach(elem => {
         elem.remove();
     })
+}
+
+//結果を画像として出力
+function captureAsPNG() {
+    const element = document.getElementById('result');
+
+    html2canvas(element).then(canvas => {
+        const imageData = canvas.toDataURL("image/png"); // 画像データ取得
+        const link = document.createElement('a'); // ダウンロード用リンク作成
+        link.href = imageData;
+        link.download = "capture.png"; // ファイル名
+        link.click(); // 自動ダウンロード
+    });
 }

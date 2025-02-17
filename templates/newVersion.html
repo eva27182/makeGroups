@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>new version</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/newVersion.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 
@@ -62,7 +63,11 @@
             </div>
         </div>
     </form>
+    <div id="outputAsPng">
+        <button id="downloadAsPng" onclick="captureAsPNG()" hidden></button>
+    </div>
     <div id="result"></div>
+    
     <script src="{{ url_for('static', filename='js/newVersion.js') }}"></script>
 </body>
 
