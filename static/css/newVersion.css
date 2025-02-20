@@ -74,6 +74,7 @@ input {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding: 10px;
 }
 
 .resultRow {
@@ -150,17 +151,7 @@ input {
     align-items: center;
     gap: 20px;
 }
-.btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background-color: black;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    box-sizing: border-box;
-}
+
 .input-box {
     width: 100px;
     text-align: center;
@@ -281,6 +272,8 @@ p.displayText{
     flex: 0 0 100%;
     scroll-snap-align: center;
     position: relative;
+    gap: 5px;
+    height: 10vh;
 }
 
 #add-next {
@@ -293,6 +286,8 @@ p.displayText{
 .input-name-area{
     display: flex;
     justify-content: center;
+    height: 45%;
+    width: 80%;
 }
 
 #show-added-player-num{
@@ -371,8 +366,8 @@ html, body {
 
 #downloadAsPng{
     background-image: url("../img/downloadAsPng.svg");
-    height: 50px;
-    width: 50px;
+    height: 70px;
+    width: 70px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -382,6 +377,48 @@ html, body {
 }
 
 #outputAsPng{
+    width: 100%;
     display: flex;
     justify-content: center;
+}
+
+#plus-court-num-button{
+    background-image: url("../img/minus.svg");
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}
+
+#minus-court-num-button{
+    background-image: url("../img/minus.svg");
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}
+
+#plus-court-num-button{
+    background-image: url("../img/plus.svg");
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}
+
+input.input-name-tag{
+    width: 100%;
+    font-size: 1.5em;
 }

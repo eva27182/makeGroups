@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>new version</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/newVersion.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/newVersion.css') }}?v=202502171953">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
@@ -17,16 +17,19 @@
         <div class="container">
             <p class="displayText">使用可能コート数</p>
             <div class="counter-box">
-                <button type="button" class="btn" onclick="decrease()">−</button>
+                <button type="button" class="btn" onclick="decrease()" id="minus-court-num-button"></button>
                 <input type="text" id="counter" class="input-box" value="0" name="groups_per_week" readonly>
-                <button type="button" class="btn" onclick="increase()">+</button>
+                <button type="button" class="btn" onclick="increase()" id="plus-court-num-button"></button>
             </div>
         </div>
 
         <div class="container">
             <div class="layer-1">
                 <div id="show-behind">
-                    <button id="show-behind-img" type="button" onclick="scrollToRight()"></button>
+                    <script>
+                        
+                      </script>
+                    <button id="show-behind-img" type="button" onclick="scrollToLeftt()"></button>
                 </div>
                 <div id="name-card-container">
                     <div class="name-area">
@@ -34,14 +37,14 @@
                         <div class="show-message">名前を入力してください</div>
                         <div class="show-player-num">player 1</div>
                         <div class="input-name-area">
-                            <input type="text" name="player1">
+                            <input type="text" name="player1" class="input-name-tag">
                         </div>
                     </div>
                 </div>
 
                 <div id="add-next">
                     <button id="add-player" onclick="addNameArea()" type="button"></button>
-                    <button id="scrollToLeft" type="button" hidden></button>
+                    <button id="scrollToLeft" type="button" onclick="scrollToRight()" hidden></button>
                 </div>
             </div>
 
@@ -59,16 +62,16 @@
                 </div>
             </div>
             <div class="layer-4">
-                <button id="register-button" disabled="true" type="button" class="deactive" onclick="submitData()">登録する</button>
+                <button id="register-button" disabled="true" type="button" class="deactive"
+                    onclick="submitData()">登録する</button>
             </div>
         </div>
     </form>
     <div id="outputAsPng">
-        <button id="downloadAsPng" onclick="captureAsPNG()" hidden></button>
+        <button id="downloadAsPng" onclick="captureAsPNG()" type="button" hidden></button>
     </div>
     <div id="result"></div>
-    
-    <script src="{{ url_for('static', filename='js/newVersion.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/newVersion.js') }}?v=202502171953"></script>
 </body>
 
 </html>

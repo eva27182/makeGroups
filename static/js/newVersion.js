@@ -31,6 +31,7 @@ function loadFormState() {
         for (let i = 0; i < (keys.length - inputTags.length); i++) {
             addNameArea();
         }
+        scrollToRightEdge();
         //inputTagsの更新
         inputTags = document.querySelectorAll("#name-card-container input");
         inputTags.forEach((input, index) => {
@@ -88,6 +89,17 @@ function countUpPlayerNum() {
     countupTextContent("#show-player-num");
 }
 
+function scrollToRightEdge() {
+    let nameAreaNum = document.querySelectorAll(".name-area").length;
+    let container = document.querySelector('#name-card-container');
+    let scrollAmount = (container.offsetWidth + 10) * (nameAreaNum);  // スクロール可能な幅 10はgapの10px
+    // 現在のスクロール位置を次の位置に変更
+    container.scrollBy({
+        left: scrollAmount,  // 横にスクロール
+        behavior: 'smooth'   // スムーズスクロール
+    });
+}
+
 //.name-areaを追加するボタン
 function addNameArea() {
     let nameAreaNum = document.querySelectorAll(".name-area").length;
@@ -113,6 +125,7 @@ function addNameArea() {
         inputNameArea.setAttribute("class", "input-name-area");
         let inputTag = document.createElement("input");
         inputTag.setAttribute("type", "text");
+        inputTag.setAttribute("class", "input-name-tag");
         inputTag.setAttribute("name", `player${nameAreaNum + 1}`)
         inputNameArea.appendChild(inputTag);
 
@@ -123,17 +136,6 @@ function addNameArea() {
 
         let container = document.querySelector("#name-card-container");
         container.appendChild(nameArea);
-    }
-
-    function scrollToRight() {
-        const container = document.querySelector('#name-card-container');
-        const scrollAmount = container.offsetWidth * nameAreaNum;  // スクロール可能な幅
-
-        // 現在のスクロール位置を次の位置に変更
-        container.scrollBy({
-            left: scrollAmount,  // 横にスクロール
-            behavior: 'smooth'   // スムーズスクロール
-        });
     }
     createNewNameArea();
     countUpPlayerNum();
@@ -197,9 +199,20 @@ function activateSubmitButton() {
     }
 }
 
+
+function scrollToLeft() {
+    let container = document.querySelector('#name-card-container');
+    let scrollAmount = container.offsetWidth;
+    console.log(scrollAmount)
+    // 現在のスクロール位置を次の位置に変更
+    container.scrollBy({
+        left: -scrollAmount,  // 横にスクロール
+        behavior: 'smooth'   // スムーズスクロール
+    });
+}
 function scrollToRight() {
-    const container = document.querySelector('#name-card-container');
-    const scrollAmount = container.offsetWidth * -1;
+    let container = document.querySelector('#name-card-container');
+    let scrollAmount = container.offsetWidth;
 
     // 現在のスクロール位置を次の位置に変更
     container.scrollBy({
@@ -380,5 +393,15 @@ function captureAsPNG() {
         link.href = imageData;
         link.download = "capture.png"; // ファイル名
         link.click(); // 自動ダウンロード
+    });
+}
+
+
+function scrollToLeftt() {
+    let container = document.querySelector('#name-card-container');
+    let scrollAmount = container.offsetWidth;
+    container.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
     });
 }
