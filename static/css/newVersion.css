@@ -14,8 +14,11 @@ header H1 {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 0;
-    margin-bottom: 30px;
+    min-height: 100vh;
     font-family: 'Noto Sans JP', sans-serif;
 }
 

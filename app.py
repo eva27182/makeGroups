@@ -139,6 +139,10 @@ def recieve_data_new():
     outputLog(main(members, len(members), groups_per_week))
     return jsonify({"status": "success", "data": main(members, len(members), groups_per_week)})
 
+@app.route("/releasenote")
+def releasenote():
+    return render_template("releasenote.html")
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

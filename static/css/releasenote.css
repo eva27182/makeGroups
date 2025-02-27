@@ -1,0 +1,80 @@
+/* 全体設定 */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* ヘッダー */
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header p {
+    margin: 10px 0 0;
+    font-size: 1rem;
+}
+
+/* リリースセクション */
+.release {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.release h2 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.release .release-date {
+    font-size: 1rem;
+    color: #777;
+}
+
+.changes h3 {
+    font-size: 1.4rem;
+    color: #555;
+    margin-top: 20px;
+}
+
+.changes ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.changes ul li {
+    background: #e9e9e9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.changes ul li:hover {
+    background-color: #d1d1d1;
+}
+
+/* フッター */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
