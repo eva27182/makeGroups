@@ -203,6 +203,8 @@ function resetResult() {
     children.forEach(elem => {
         elem.remove();
     })
+    let btn = document.querySelector("#downloadAsPng");
+    btn.hidden = false;
 }
 
 
@@ -244,3 +246,37 @@ window.addEventListener('load', loadFormState);
 
 // フォームが変更されたときに状態を保存
 document.querySelector("#inputArea").addEventListener('input', saveFormState);
+
+//結果を画像として出力
+function captureAsPNG() {
+    const element = document.getElementById('result-box');
+
+    modernScreenshot.domToPng(element)
+        .then((dataUrl) => {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'capture.png';
+            link.click();
+            console.log("きゃぷちゃ")
+        })
+        .catch((error) => {
+            console.error('キャプチャに失敗しました:', error);
+        });
+}
+
+//結果を画像として出力
+function captureAsPNG() {
+    const element = document.getElementById('result');
+
+    modernScreenshot.domToPng(element)
+        .then((dataUrl) => {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'capture.png';
+            link.click();
+            console.log("きゃぷちゃ")
+        })
+        .catch((error) => {
+            console.error('キャプチャに失敗しました:', error);
+        });
+}

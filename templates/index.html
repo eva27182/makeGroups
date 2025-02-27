@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>グループ作成</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/modern-screenshot"></script>
+
 </head>
 
 
@@ -12,6 +14,11 @@
     <header>
         <h1>バドミントングループ分け</h1>
     </header>
+    <div id="banner">
+        <a href="/newVersion">
+            ＞＞＞新バージョン公開しました!!!＜＜＜
+        </a>
+    </div>
     <div id="inputMembers">
         <form>
             <div id="inputArea">
@@ -84,6 +91,9 @@
                 <button type="button" onclick="resetResult()">リセットリザルト</button>
             </div>
         </form>
+    </div>
+    <div id="outputAsPng">
+        <button id="downloadAsPng" onclick="captureAsPNG()" type="button" hidden></button>
     </div>
     <div id="result"></div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>

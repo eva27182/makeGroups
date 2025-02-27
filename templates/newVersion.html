@@ -4,8 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>new version</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/newVersion.css') }}?v=202502171953">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/newVersion.css') }}?v=202502271326">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/modern-screenshot"></script>
+
+
 </head>
 
 
@@ -13,6 +17,7 @@
     <header>
         <h1>バドミントングループ分け</h1>
     </header>
+    
     <form>
         <div class="container">
             <p class="displayText">使用可能コート数</p>
@@ -26,9 +31,6 @@
         <div class="container">
             <div class="layer-1">
                 <div id="show-behind">
-                    <script>
-                        
-                      </script>
                     <button id="show-behind-img" type="button" onclick="scrollToLeftt()"></button>
                 </div>
                 <div id="name-card-container">
@@ -70,8 +72,8 @@
     <div id="outputAsPng">
         <button id="downloadAsPng" onclick="captureAsPNG()" type="button" hidden></button>
     </div>
-    <div id="result"></div>
-    <script src="{{ url_for('static', filename='js/newVersion.js') }}?v=202502171953"></script>
+    <div id="result-box"></div>
+    <script src="{{ url_for('static', filename='js/newVersion.js') }}?v=202502271326"></script>
 </body>
 
 </html>

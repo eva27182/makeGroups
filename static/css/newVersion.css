@@ -1,5 +1,5 @@
-html {
-    font-size: xx-large;
+HTML{
+    font-size: 45px;
 }
 
 header {
@@ -10,11 +10,13 @@ header H1 {
     margin-top: 0;
     width: 100%;
     text-align: center;
+    font-size: 70px;
 }
 
 body {
     margin: 0;
     margin-bottom: 30px;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 
@@ -35,17 +37,20 @@ form {
 
 #inputPlayerArea {
     width: 100%;
-    
+
 }
-#inputPlayerArea .row>p{
+
+#inputPlayerArea .row>p {
     width: 20%;
     white-space: nowrap;
 }
-#inputPlayerArea .row>input{
+
+#inputPlayerArea .row>input {
     width: 50%;
     white-space: nowrap;
 }
-#inputPlayerArea .row>button{
+
+#inputPlayerArea .row>button {
     width: 20%;
 }
 
@@ -65,7 +70,7 @@ input {
     margin-right: 10px;
 }
 
-#result{
+#result {
     margin-top: 20px;
     width: 80%;
     margin-left: auto;
@@ -96,7 +101,7 @@ input {
 
 #buttons {
     margin-top: 30px;
-    
+
     display: flex;
     justify-content: space-evenly;
 }
@@ -111,9 +116,10 @@ input {
     color: red;
 }
 
-.kyukei{
+.kyukei {
     margin: 0;
 }
+
 #result>table {
     font-size: large;
     width: 95%;
@@ -121,23 +127,27 @@ input {
     margin-right: auto;
 }
 
-#result>table, th, td {
+#result>table,
+th,
+td {
     border: 1px solid black;
     margin-top: 10px;
-  }
+}
 
-  /* 奇数行目の色 */
-  #result tr:nth-child(odd) {
-    background-color: #f2f2f2; /* グレー */
-  }
+/* 奇数行目の色 */
+#result tr:nth-child(odd) {
+    background-color: #f2f2f2;
+    /* グレー */
+}
 
-  /* 偶数行目の色 */
-  #result tr:nth-child(even) {
-    background-color: #ffffff; /* 白 */
-  }
-  
-  /*-----------------*/
-  .container {
+/* 偶数行目の色 */
+#result tr:nth-child(even) {
+    background-color: #ffffff;
+    /* 白 */
+}
+
+/*-----------------*/
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -146,6 +156,7 @@ input {
     padding: 20px;
     margin-bottom: 10px;
 }
+
 .counter-box {
     display: flex;
     align-items: center;
@@ -161,7 +172,7 @@ input {
     padding: 10px;
 }
 
-p.displayText{
+p.displayText {
     margin: 0;
 }
 
@@ -175,6 +186,7 @@ p.displayText{
     align-items: center;
     padding: 20px;
 }
+
 .player-box {
     background-color: #E0E0E0;
     padding: 20px;
@@ -183,6 +195,7 @@ p.displayText{
     max-width: 400px;
     margin-bottom: 20px;
 }
+
 .p_input-box {
     background-color: #7DA7C9;
     color: white;
@@ -192,15 +205,18 @@ p.displayText{
     border-radius: 5px;
     font-size: 16px;
 }
+
 .player-count {
     font-size: 20px;
     margin: 10px 0;
 }
+
 .counter-box {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .count-display {
     background-color: #ddd;
     padding: 10px;
@@ -209,6 +225,7 @@ p.displayText{
     text-align: center;
     border-radius: 5px;
 }
+
 .add-button {
     background-color: black;
     color: white;
@@ -220,6 +237,7 @@ p.displayText{
     cursor: pointer;
     margin-left: 10px;
 }
+
 #register-button.deactive {
     background-color: #B0B0B0;
     border: none;
@@ -232,6 +250,7 @@ p.displayText{
     width: 190px;
     text-decoration: line-through;
 }
+
 #register-button.active {
     border: none;
     padding: 10px 20px;
@@ -273,40 +292,44 @@ p.displayText{
     scroll-snap-align: center;
     position: relative;
     gap: 5px;
-    height: 10vh;
 }
 
 #add-next {
-    flex: 0 0 50px; /* 幅を固定 */
+    flex: 0 0 50px;
+    /* 幅を固定 */
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.input-name-area{
+.input-name-area {
     display: flex;
     justify-content: center;
     height: 45%;
     width: 80%;
 }
 
-#show-added-player-num{
+#show-added-player-num {
     text-align: center;
 }
 
-#name-card-container{
-    overflow-x:scroll;
+#name-card-container {
+    overflow-x: scroll;
     display: flex;
     flex: 1;
-    justify-content: space-between; 
+    justify-content: space-between;
     gap: 10px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;  /* IE, Edge */
-    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;
+    /* IE, Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
 #name-card-container::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari, Edge */
+    display: none;
+    /* Chrome, Safari, Edge */
 }
 
 #add-player {
@@ -320,6 +343,7 @@ p.displayText{
     cursor: pointer;
     background-color: #00000000;
 }
+
 #scrollToLeft {
     height: 70px;
     width: 70px;
@@ -333,11 +357,13 @@ p.displayText{
     transform: scaleX(-1);
 }
 
-html, body {
-    overscroll-behavior: none; /* スワイプで戻る動作を無効化 */
+html,
+body {
+    overscroll-behavior: none;
+    /* スワイプで戻る動作を無効化 */
 }
 
-#show-behind-img{
+#show-behind-img {
     height: 70px;
     width: 70px;
     background-image: url("../img/showBehind.svg");
@@ -349,7 +375,7 @@ html, body {
     background-color: #00000000;
 }
 
-.delete-button{
+.delete-button {
     background-image: url("../img/deleteRect.svg");
     height: 50px;
     width: 50px;
@@ -364,7 +390,7 @@ html, body {
     right: 0px;
 }
 
-#downloadAsPng{
+#downloadAsPng {
     background-image: url("../img/downloadAsPng.svg");
     height: 70px;
     width: 70px;
@@ -376,13 +402,13 @@ html, body {
     background-color: #00000000;
 }
 
-#outputAsPng{
+#outputAsPng {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-#plus-court-num-button{
+#plus-court-num-button {
     background-image: url("../img/minus.svg");
     height: 40px;
     width: 40px;
@@ -394,7 +420,7 @@ html, body {
     background-color: #00000000;
 }
 
-#minus-court-num-button{
+#minus-court-num-button {
     background-image: url("../img/minus.svg");
     height: 40px;
     width: 40px;
@@ -406,7 +432,7 @@ html, body {
     background-color: #00000000;
 }
 
-#plus-court-num-button{
+#plus-court-num-button {
     background-image: url("../img/plus.svg");
     height: 40px;
     width: 40px;
@@ -418,7 +444,87 @@ html, body {
     background-color: #00000000;
 }
 
-input.input-name-tag{
+input.input-name-tag {
     width: 100%;
     font-size: 1.5em;
+    padding: 10px;
+    text-align: center;
+}
+
+.badminton-court {
+    aspect-ratio: 1/2;
+    width: 20vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}
+
+.result-court {
+    position: relative;
+    width: 20vw;
+    aspect-ratio: 1/2;
+}
+
+.result-court>.badminton-court {
+    position: absolute;
+}
+.result-court>text{
+    font-size: 0.7em;
+    position: absolute;
+}
+
+.player-card{
+    width: 50%;
+    height: auto;
+    text-align: center;
+}
+
+.player-1-place{
+    left: 0;
+    top: 10%;
+}
+.player-2-place{
+    left: 50%;
+    top: 25%;
+}
+.player-3-place{
+    left: 0;
+    top: 60%;
+}
+.player-4-place{
+    left: 50%;
+    top: 75%;
+}
+
+.result-as-svg{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+}
+
+.result-per-week{
+    padding: 15px;
+    background-color: #FFFFF0;
+    margin-top: 10px;
+}
+.header-container{
+    margin-top: 40px;
+}
+.header-container>p{
+    margin: 0;
+}
+.header-container>text{
+    font-size: 0.7rem;
+}
+
+#result-box{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    padding: 15px;
 }

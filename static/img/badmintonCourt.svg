@@ -1,0 +1,17 @@
+<svg width="63" height="136" viewBox="0 0 63 136" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<symbol id="badminton-court-svg">
+<rect x="0.8" y="0.8" width="61.4" height="134.4" stroke="black" stroke-width="0.4"/>
+<rect x="1" y="1" width="61" height="134" fill="#B1B1B1"/>
+<line x1="1" y1="5.00001" x2="62" y2="5.00001" stroke="#3F3F3F" stroke-width="0.4"/>
+<line x1="58" y1="0.999692" x2="58.2062" y2="135" stroke="#3F3F3F" stroke-width="0.4"/>
+<line x1="32.0948" y1="0.999786" x2="32.0948" y2="48.0002" stroke="#3F3F3F" stroke-width="0.4"/>
+<line x1="32.2" y1="87.5" x2="32.2" y2="135" stroke="#3F3F3F" stroke-width="0.4"/>
+<line x1="5.40001" y1="0.999692" x2="5.60618" y2="135" stroke="#3F3F3F" stroke-width="0.4"/>
+<line x1="1" y1="48" x2="62" y2="48" stroke="#3F3F3F" stroke-width="0.4"/>
+<line x1="1" y1="87.6" x2="62" y2="87.6" stroke="#3F3F3F" stroke-width="0.4"/>
+<line x1="1" y1="130.6" x2="62" y2="130.6" stroke="#3F3F3F" stroke-width="0.4"/>
+<line x1="1" y1="67.8" x2="62" y2="67.8" stroke="#3F3F3F" stroke-width="0.4"/>
+</defs>
+</symbol>
+</svg>

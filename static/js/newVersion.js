@@ -44,7 +44,7 @@ function loadFormState() {
 
 
 //ユーザの操作を判断
-const interactionEvents = ["click", "scroll", "mousemove", "keydown", "touchstart"];
+const interactionEvents = ["click", "scroll", "mousemove", "keydown", "touchstart", "input"];
 interactionEvents.forEach(event => {
     document.addEventListener(event, saveFormState);
     document.addEventListener(event, countUpPlayerNum);
@@ -92,9 +92,9 @@ function countUpPlayerNum() {
 function scrollToRightEdge() {
     let nameAreaNum = document.querySelectorAll(".name-area").length;
     let container = document.querySelector('#name-card-container');
-    let scrollAmount = (container.offsetWidth + 10) * (nameAreaNum);  // スクロール可能な幅 10はgapの10px
+    let scrollAmount = (container.offsetWidth + 10) * nameAreaNum;
     // 現在のスクロール位置を次の位置に変更
-    container.scrollBy({
+    container.scrollTo({
         left: scrollAmount,  // 横にスクロール
         behavior: 'smooth'   // スムーズスクロール
     });
@@ -172,7 +172,10 @@ function activateSubmitButton() {
         btn.setAttribute("class", "deactive");
         needMorePlayer.hidden = false;
         checkFlag += 1;
-        console.log("人数");
+        //console.log("人数");
+    }
+    else{
+        needMorePlayer.hidden = true;
     }
     //player名が未入力の場合
     if (playerFlag > 0) {
@@ -180,7 +183,10 @@ function activateSubmitButton() {
         btn.setAttribute("class", "deactive");
         needFillBlanc.hidden = false;
         checkFlag += 1;
-        console.log("未入力");
+        //console.log("未入力");
+    }
+    else{
+        needFillBlanc.hidden = true;
     }
     //重複が含まれる場合
     if (chohukuFlag > 0) {
@@ -188,7 +194,10 @@ function activateSubmitButton() {
         btn.setAttribute("class", "deactive");
         duplication.hidden = false;
         checkFlag += 1;
-        console.log("重複");
+        //console.log("重複");
+    }
+    else{
+        duplication.hidden = true;
     }
     if (checkFlag == 0) {
         btn.removeAttribute("disabled");
@@ -212,7 +221,7 @@ function scrollToLeft() {
 }
 function scrollToRight() {
     let container = document.querySelector('#name-card-container');
-    let scrollAmount = container.offsetWidth;
+    let scrollAmount = container.offsetWidth + 10;
 
     // 現在のスクロール位置を次の位置に変更
     container.scrollBy({
@@ -269,7 +278,8 @@ function submitData() {
         .then(data => {
             console.log('Success:', data);
             resetResult();
-            showGroups(data);
+            //showGroups(data);
+            create_result_as_svg(data);
             console.log('Success:', data);
         })
         .catch((error) => {
@@ -374,10 +384,10 @@ function showGroups(data) {
     create_show_table(data);
 }
 function resetResult() {
-    let result = document.querySelector("#result");
-    console.log(result);
+    let result = document.querySelector("#result-box");
+    //console.log(result);
     let children = result.querySelectorAll("*");
-    console.log(children)
+    //console.log(children)
     children.forEach(elem => {
         elem.remove();
     })
@@ -385,16 +395,23 @@ function resetResult() {
 
 //結果を画像として出力
 function captureAsPNG() {
-    const element = document.getElementById('result');
+    const element = document.getElementById('result-box');
 
-    html2canvas(element).then(canvas => {
-        const imageData = canvas.toDataURL("image/png"); // 画像データ取得
-        const link = document.createElement('a'); // ダウンロード用リンク作成
-        link.href = imageData;
-        link.download = "capture.png"; // ファイル名
-        link.click(); // 自動ダウンロード
-    });
+    modernScreenshot.domToPng(element)
+        .then((dataUrl) => {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'capture.png';
+            link.click();
+            console.log("きゃぷちゃ")
+        })
+        .catch((error) => {
+            console.error('キャプチャに失敗しました:', error);
+        });
 }
+
+
+
 
 
 function scrollToLeftt() {
@@ -404,4 +421,125 @@ function scrollToLeftt() {
         left: -scrollAmount,
         behavior: 'smooth'
     });
+}
+
+/*
+window.addEventListener("load", function () {
+    let styleSheet = document.createElement("style");
+    document.head.appendChild(styleSheet);
+    const objectTag = document.querySelector(".badminton-court");
+    const resultCourt = document.querySelector(".result-court");
+    const rect = objectTag.getBoundingClientRect();
+    let width = rect.width;
+    let height = rect.height;
+    console.log("表示されている幅:", rect.width);
+    console.log("表示されている高さ:", rect.height);
+
+    console.log(width, height);
+    if (width && height) {
+        resultCourt.style.width = width + "px";
+        resultCourt.style.height = height + "px";
+
+        styleSheet.innerHTML += `
+                .result-court {
+                    width: ${width}px;
+                    height: ${height}px;
+                }
+            `;
+
+    }
+});
+*/
+
+
+function create_result_as_svg(data) {
+    read_badminton_svg();
+    //array = ["player1","player2","player3","player4"]
+    function create_result_court(array) {
+        let result_court = document.createElement("div");
+        result_court.setAttribute("class", "result-court");
+
+        let badminton_court = document.createElement("svg");
+        badminton_court.setAttribute("class", "badminton-court");
+        badminton_court.setAttribute("viewBox", "0 0 63 136");
+        let useTag = document.createElement("use");
+        useTag.setAttribute("xlink:href", "#badminton-court-svg");
+        badminton_court.appendChild(useTag);
+        result_court.appendChild(badminton_court);
+
+        for (let i = 0; i < array.length; i++) {
+            let textTag = document.createElement("text");
+            textTag.setAttribute("class", `player-${i + 1}-place player-card`);
+            textTag.textContent = array[i];
+            result_court.appendChild(textTag);
+        }
+        return result_court
+    }
+    //console.log("create_result_as_svg_1:::", data);
+    //console.log("data.data", data.data)
+    //console.log("data.data[0]:", data.data[0]);
+    let weeks = data.data;
+
+    let result_box = document.querySelector("#result-box");
+    for (let i = 0; i < weeks.length; i++) {
+        let week = weeks[i]
+        let player = week[0];
+        let rest = week[1];
+
+
+
+        let result_as_svg = document.createElement("div");
+        result_as_svg.setAttribute("class", "result-as-svg");
+
+        let result_per_week = document.createElement("div");
+        result_per_week.setAttribute("class", "result-per-week");
+
+
+        let headerDiv = document.createElement("div");
+        headerDiv.setAttribute("class", "header-container");
+
+        let p = document.createElement("p");
+        p.textContent = `${i + 1}周目`
+        p.setAttribute("class", "weeks_p");
+        headerDiv.appendChild(p);
+
+        let kyukei = document.createElement("text");
+        kyukei.textContent = rest.join("さん ") + "さん は休憩です";
+        kyukei.setAttribute("class", "player-who-rest");
+        headerDiv.appendChild(kyukei);
+        result_per_week.appendChild(headerDiv);
+
+
+
+        for (let court of player) {
+            //console.log(court)
+            let result_court = create_result_court(court);
+            result_as_svg.appendChild(result_court);
+        }
+        result_per_week.appendChild(result_as_svg);
+        result_box.appendChild(result_per_week);
+    }
+    let btn = document.querySelector("#downloadAsPng");
+    btn.hidden = false;
+}
+
+//svgファイルを読み込んでbodyにねじ込む
+function read_badminton_svg() {
+    // SVGファイルのURLを指定
+    const svgUrl = 'static/img/badmintonCourt.svg';
+
+    // fetchでSVGファイルを非同期で読み込む
+    fetch(svgUrl)
+        .then(response => response.text())  // SVGをテキストとして取得
+        .then(svgText => {
+            // SVGの内容をDOMに追加
+            const parser = new DOMParser();
+            const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
+            console.log(svgText);
+            let def = document.querySelector("#result-box");
+            def.innerHTML += svgText;
+        })
+        .catch(error => {
+            console.error('Error loading SVG:', error);
+        });
 }

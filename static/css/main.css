@@ -64,6 +64,7 @@ input {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    background-color: cornsilk;
 }
 
 .resultRow {
@@ -124,3 +125,53 @@ input {
   #result tr:nth-child(even) {
     background-color: #ffffff; /* 白 */
   }
+
+  #downloadAsPng {
+    background-image: url("../img/downloadAsPng.svg");
+    height: 70px;
+    width: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: #00000000;
+}
+
+#outputAsPng {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#banner {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #ffcc00;
+    padding: 10px 0;
+    position: relative;
+    height: 40px;
+}
+
+#banner a {
+    display: inline-block;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    position: absolute;
+    white-space: nowrap;
+    right: 0; /* 最初は画面の外に */
+    animation: marquee 15s linear infinite;
+    text-decoration: underline;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100vw);
+    }
+}
