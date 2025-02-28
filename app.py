@@ -143,6 +143,32 @@ def recieve_data_new():
 def releasenote():
     return render_template("releasenote.html")
 
+@app.route("/comment")
+def comment():
+    return render_template("comment.html")
+
+
+# コメントを保存するファイル
+COMMENT_FILE = "comments.txt"
+
+@app.route('/save_comment', methods=['POST'])
+def save_comment():
+    try:
+        data = request.get_json()
+        comment = data.get("comment", "").strip()
+
+        if not comment:
+            return jsonify({"message": "コメントが空です"}), 400
+
+        # コメントをファイルに保存
+        with open(COMMENT_FILE, "a", encoding="utf-8") as file:
+            file.write(comment + "\n")
+
+        return jsonify({"message": "コメントを保存しました"}), 200
+
+    except Exception as e:
+        return jsonify({"message": f"エラーが発生しました: {str(e)}"}), 500
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

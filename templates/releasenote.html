@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>リリースノート</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/releasenote.css') }}?v=202502271326">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}?v=202502271326">
 </head>
 <body>
     <header>
@@ -32,8 +33,6 @@
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 アプリケーション名</p>
-    </footer>
+    {% include 'footer.html' %}
 </body>
 </html>

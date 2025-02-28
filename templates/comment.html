@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comment.css') }}">
+    <title>コメント</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>コメントを投稿</h1>
+        <textarea id="commentInput" placeholder="コメントを入力してください..."></textarea>
+        <button onclick="postComment()">投稿</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/comment.js') }}"></script>
+</body>
+</html>

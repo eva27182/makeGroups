@@ -155,6 +155,19 @@ input {
 }
 
 #banner a {
+    display: block; /* 親のdiv#bannerと同じ幅にする */
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative; /* 基準位置を決める */
+    overflow: hidden; /* spanの部分だけを流れるように */
+}
+
+#banner a span{
     display: inline-block;
     color: #000;
     font-size: 20px;
@@ -164,7 +177,6 @@ input {
     white-space: nowrap;
     right: 0; /* 最初は画面の外に */
     animation: marquee 15s linear infinite;
-    text-decoration: underline;
 }
 
 @keyframes marquee {
