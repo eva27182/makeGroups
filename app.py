@@ -1,5 +1,5 @@
 #conda deactivate
-#. venv/bin/activate
+#source .venv/bin/activate
 #flask --app app --debug run
 
 from flask import Flask, render_template, request, jsonify

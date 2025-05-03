@@ -2,17 +2,6 @@ HTML{
     font-size: 45px;
 }
 
-header {
-    background-color: rgb(123, 220, 220);
-}
-
-header H1 {
-    margin-top: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 70px;
-}
-
 body {
     display: flex;
     flex-direction: column;
@@ -21,7 +10,6 @@ body {
     min-height: 100vh;
     font-family: 'Noto Sans JP', sans-serif;
 }
-
 
 form {
     width: 100%;

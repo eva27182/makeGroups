@@ -1,0 +1,24 @@
+header {
+    background-color: rgb(123, 220, 220);
+}
+
+header H1 {
+    width: 100%;
+    text-align: center;
+    font-size: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+header h1>a {
+    text-decoration: none;
+    font-size: 8vw;
+    /* ビューポートの幅に応じて文字サイズが変わる */
+    max-width: 90vw;
+    /* 最大横幅を指定 */
+}
+
+header h1>a:visited {
+    color: black;
+    /* 訪問済みリンクの色も同じにする */
+}

@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <title>new version</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/newVersion.css') }}?v=202502271326">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}?v=202502271326">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}?v=202502271326">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/modern-screenshot"></script>
+
 
 </head>
 <!-- Google tag (gtag.js) -->
@@ -21,12 +23,8 @@
   gtag('config', 'G-RQG2VYS655');
 </script>
 
-
 <body>
-    <header>
-        <h1>バドミントングループ分け</h1>
-    </header>
-    
+    {% include 'header.html' %}
     <form>
         <div class="container">
             <p class="displayText">使用可能コート数</p>
